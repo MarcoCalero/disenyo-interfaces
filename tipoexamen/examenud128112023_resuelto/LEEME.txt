@@ -1,0 +1,30 @@
+EXAMEN UD1 (28/11/2023) - BAR - PROYECTO RESUELTO Y COMENTADO
+=============================================================
+Cada apartado está marcado con un comentario "APARTADO ..." en el código:
+
+  index.html        Apartado a)  formulario frmAltaPedido (Bootstrap 5)
+  css/estilos.css   Apartado b)  fuente 'Permanent Marker' en formularios y listado
+  js/objetos.js     Apartado c)  clases Pedido, Plato y Bar
+  js/codigo.js      Apartado d.i)   visibilidad + desplegable de platos
+                    Apartado d.ii)  alta de pedido
+                    Apartado d.iii) listado de pedidos de un cliente
+  js/ajax.js        Viene en la plantilla; solo se ajusta rutaBackend
+  backend/          No venía en la plantilla: config.php + 3 scripts PHP
+                    (get_platos.php, alta_pedido.php, get_pedidos_cliente.php)
+
+Para probarlo:
+ 1. Importa sql/bar.sql en phpMyAdmin (http://localhost:8080).
+ 2. Revisa backend/config.php (servidor db, usuario/contraseña, BD bar).
+    Si usas dbuser: GRANT ALL PRIVILEGES ON *.* TO 'dbuser'@'%'; FLUSH PRIVILEGES;
+ 3. Abre http://localhost/examen/tipoexamen/examenud128112023_resuelto/index.html
+    Si cambias la carpeta de sitio, ajusta rutaBackend en js/ajax.js.
+ 4. Comprueba los PHP sueltos en el navegador:
+    .../backend/get_platos.php
+    .../backend/get_pedidos_cliente.php?cliente=Susana
+
+Notas:
+ - Las respuestas del backend son { ok, mensaje, datos }.
+ - En la captura del enunciado, 4 x 5.50 aparece como 22.50: es una errata
+   (el total correcto es 22.00).
+ - En bar.sql hay un cliente 'Paco ' con espacio final; MySQL lo encuentra
+   igual al buscar 'Paco'.

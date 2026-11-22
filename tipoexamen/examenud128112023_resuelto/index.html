@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <!-- Bootstrap CSS -->
+    <link href="bootstrap/bootstrap.min.css" rel="stylesheet">
+    <!-- Estilos propios -->
+    <link href="css/estilos.css" rel="stylesheet">
+
+    <!-- <a href="https://www.flaticon.es/iconos-gratis/emparedado" title="emparedado iconos">Emparedado iconos creados por Creaticca Creative Agency - Flaticon</a> -->
+
+    <title>Bar</title>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Barra de navegación -->
+        <nav class="navbar navbar-expand-lg bg-gradient bg-light bg-gradient-directional">
+            <div class=" container-fluid">
+                <a class="navbar-brand">Bar <img src="favicon.png" width="25" /></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" id="mnuAltaPedido">Alta de pedido</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" id="mnuListadoPedidosCliente">Listado de pedidos de un
+                                cliente</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Formularios -->
+        <!-- ================================================================
+             APARTADO a) (1,5 puntos) Formulario frmAltaPedido con Bootstrap 5
+             - Mismo patrón de filas que frmListadoPedidosCliente (row + col-3 / col-4)
+             - SIN campo idpedido (AUTO_INCREMENT en la BD)
+             ================================================================ -->
+        <form name="frmAltaPedido" id="frmAltaPedido">
+            <fieldset>
+                <!-- Form Name -->
+                <legend>Alta de pedido</legend>
+                <!-- Text input: nombre del cliente -->
+                <div class="row mb-1">
+                    <label class="col-3 control-label" for="txtCliente">Nombre del cliente</label>
+                    <div class="col-4">
+                        <input id="txtCliente" name="txtCliente" placeholder="Nombre del cliente"
+                            class="form-control input-md" type="text">
+                    </div>
+                </div>
+                <!-- Select: platos (las <option> se cargan desde codigo.js) -->
+                <div class="row mb-1">
+                    <label class="col-3 control-label" for="lstPlato">Platos</label>
+                    <div class="col-4">
+                        <select id="lstPlato" name="lstPlato" class="form-select">
+                        </select>
+                    </div>
+                </div>
+                <!-- Radios: unidades 1..9 (mismo name, value obligatorio, el 1 marcado por defecto) -->
+                <div class="row mb-1">
+                    <span class="col-3 control-label">Unidades</span>
+                    <div class="col-9">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="radUnidades" id="radUnidades1" value="1" checked>
+                            <label class="form-check-label" for="radUnidades1">1</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="radUnidades" id="radUnidades2" value="2">
+                            <label class="form-check-label" for="radUnidades2">2</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="radUnidades" id="radUnidades3" value="3">
+                            <label class="form-check-label" for="radUnidades3">3</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="radUnidades" id="radUnidades4" value="4">
+                            <label class="form-check-label" for="radUnidades4">4</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="radUnidades" id="radUnidades5" value="5">
+                            <label class="form-check-label" for="radUnidades5">5</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="radUnidades" id="radUnidades6" value="6">
+                            <label class="form-check-label" for="radUnidades6">6</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="radUnidades" id="radUnidades7" value="7">
+                            <label class="form-check-label" for="radUnidades7">7</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="radUnidades" id="radUnidades8" value="8">
+                            <label class="form-check-label" for="radUnidades8">8</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="radUnidades" id="radUnidades9" value="9">
+                            <label class="form-check-label" for="radUnidades9">9</label>
+                        </div>
+                    </div>
+                </div>
+                <!-- Button -->
+                <div class="row mt-3">
+                    <div class="offset-3 col-4">
+                        <input type="button" id="btnAltaPedido" name="btnAltaPedido"
+                            class="btn btn-primary" value="Aceptar" />
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+        <form name="frmListadoPedidosCliente" id="frmListadoPedidosCliente">
+            <fieldset>
+                <!-- Form Name -->
+                <legend>Listado de pedidos de un cliente</legend>
+                <!-- Text input-->
+                <div class="row mb-1">
+                    <label class="col-3 control-label" for="txtNombreClienteListado">Nombre del cliente</label>
+                    <div class="col-4">
+                        <input id="txtNombreClienteListado" name="txtNombreClienteListado"
+                            placeholder="Nombre del cliente" class="form-control input-md" type="text" step="1">
+                    </div>
+                </div>
+                <!-- Button -->
+                <div class="row mt-3">
+                    <div class="offset-3 col-4">
+                        <input type="button" id="btnListadoPedidosCliente" name="btnListadoPedidosCliente"
+                            class="btn btn-primary" value="Aceptar" />
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+
+        <!-- Listado -->
+        <div id="listado">
+            <!-- Mostrar aquí la tabla del listado solicitado -->
+            
+        </div>
+
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="bootstrap/bootstrap.min.js"></script>
+    <!-- Scripts propios -->
+    <script src="js/ajax.js"></script>
+    <script src="js/objetos.js"></script>
+    <script src="js/codigo.js"></script>
+</body>
+
+</html>
