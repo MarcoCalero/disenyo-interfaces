@@ -52,124 +52,152 @@
         </div>
       </nav>
       <!-- Formularios -->
-      <form name="frmAltaPedido" id="frmAltaPedido" class="d-none">
+      <form name="frmAltaPedido" id="frmAltaPedido">
         <!-- Incluir aquí los campos necesarios -->
-        <h3>Alta de pedido</h3>
-        <table>
-          <tr>
-            <td><p>Nombre del cliente:</p></td>
-            <td>
-              <div class="form-floating mb-3">
+        <fieldset>
+          <legend>Alta de pedido</legend>
+          <div class="row mb-2">
+            <label class="col-3 col-form-label" for="txtCliente"
+              >Nombre del cliente</label
+            >
+            <div class="col-4">
+              <input
+                type="text"
+                class="form-control"
+                id="txtCliente"
+                name="tstCliente"
+                placeholder="Nombre del cliente"
+              />
+            </div>
+          </div>
+          <div class="row mb-2">
+            <label class="col-3 col-form-label" for="lstPlato">Platos</label>
+            <div class="col-4">
+              <select
+                class="form-select"
+                id="lstPlato"
+                name="lstPlato"
+              ></select>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <label class="col-2 col-form-label">Unidades</label>
+            <div class="col-6">
+              <div class="form-check form-check-inline">
                 <input
-                  type="email"
-                  class="campoNombreCliente"
-                  id="floatingInput"
-                  placeholder="name@example.com"
+                  class="form-check-input"
+                  type="radio"
+                  name="radUnidades"
+                  id="radUnidades1"
+                  value="1"
+                  checked
                 />
-                <label for="floatingInput">Nombre del cliente</label>
+                <label class="form-check-label" for="radUnidades1">1</label>
               </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <p>Platos</p>
-            </td>
-            <td>
-              <div class="row mb-3">
-                <label for="lstGenero" class="col-3 form-label">Género</label>
-                <div class="col-3">
-                  <select class="form-select" name="lstGenero" id="lstPlato">
-                    <!-- Rellenar desplegable de géneros -->
-                  </select>
-                </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="radUnidades"
+                  id="radUnidades2"
+                  value="2"
+                  checked
+                />
+                <label class="form-check-label" for="radUnidades2">2</label>
               </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <p>Unidades</p>
-            </td>
-            <td>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="radUnidades"
+                  id="radUnidades3"
+                  value="3"
+                  checked
+                />
+                <label class="form-check-label" for="radUnidades3">3</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="radUnidades"
+                  id="radUnidades4"
+                  value="4"
+                  checked
+                />
+                <label class="form-check-label" for="radUnidades4">4</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="radUnidades"
+                  id="radUnidades5"
+                  value="5"
+                  checked
+                />
+                <label class="form-check-label" for="radUnidades5">5</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="radUnidades"
+                  id="radUnidades6"
+                  value="6"
+                  checked
+                />
+                <label class="form-check-label" for="radUnidades6">6</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="radUnidades"
+                  id="radUnidades7"
+                  value="7"
+                  checked
+                />
+                <label class="form-check-label" for="radUnidades7">7</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="radUnidades"
+                  id="radUnidades8"
+                  value="8"
+                  checked
+                />
+                <label class="form-check-label" for="radUnidades8">8</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="radUnidades"
+                  id="radUnidades9"
+                  value="9"
+                  checked
+                />
+                <label class="form-check-label" for="radUnidades9">9</label>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="offset-3 col-4">
               <input
-                class="form-check-input"
-                type="radio"
-                name="radioDefault"
-                id="radio1"
-                checked
+                type="button"
+                class="btn btn-primary"
+                id="btnAltaPedido"
+                name="btnAltaPedido"
+                value="Aceptar"
               />
-              <label class="form-check-label" for="radioDefault1"> 1 </label>
-              <input
-                class="form-check-input"
-                type="radio"
-                name="radioDefault"
-                id="radio2"
-              />
-              <label class="form-check-label" for="radioDefault1"> 2 </label>
-              <input
-                class="form-check-input"
-                type="radio"
-                name="radioDefault"
-                id="radio3"
-              />
-              <label class="form-check-label" for="radioDefault1"> 3 </label>
-              <input
-                class="form-check-input"
-                type="radio"
-                name="radioDefault"
-                id="radio4"
-              />
-              <label class="form-check-label" for="radioDefault1"> 4 </label>
-              <input
-                class="form-check-input"
-                type="radio"
-                name="radioDefault"
-                id="radio5"
-              />
-              <label class="form-check-label" for="radioDefault1"> 5 </label>
-              <input
-                class="form-check-input"
-                type="radio"
-                name="radioDefault"
-                id="radio6"
-              />
-              <label class="form-check-label" for="radioDefault1"> 6 </label>
-              <input
-                class="form-check-input"
-                type="radio"
-                name="radioDefault"
-                id="radio7"
-              />
-              <label class="form-check-label" for="radioDefault1"> 7 </label>
-              <input
-                class="form-check-input"
-                type="radio"
-                name="radioDefault"
-                id="radio8"
-              />
-              <label class="form-check-label" for="radioDefault1"> 8 </label>
-              <input
-                class="form-check-input"
-                type="radio"
-                name="radioDefault"
-                id="radio9"
-              />
-              <label class="form-check-label" for="radioDefault1"> 9 </label>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <button type="button" class="btn btn-primary" id="idboton">
-                aceptar
-              </button>
-            </td>
-          </tr>
-        </table>
+            </div>
+          </div>
+        </fieldset>
       </form>
-      <form
-        name="frmListadoPedidosCliente"
-        id="frmListadoPedidosCliente"
-        class="d-none"
-      >
+      <form name="frmListadoPedidosCliente" id="frmListadoPedidosCliente">
         <fieldset>
           <!-- Form Name -->
           <legend>Listado de pedidos de un cliente</legend>

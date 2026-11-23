@@ -1,52 +1,72 @@
 "use strict";
-var oBar = Bar();
+
 // Codificar aquí el programa principal
+var oBar = new Bar();
+
+const frmAlta = document.getElementById("frmAltaPedido");
+const frmListado = document.getElementById("frmListadoPedidosCliente");
 
 registrarEventos();
 
 function registrarEventos() {
-  // dropdown --------------------
   document
-    .querySelector("#mnuAltaPedido")
+    .getElementById("mnuAltaPedido")
     .addEventListener("click", mostrarFormulario);
-
-  //   document
-  //     .querySelector("#mnuListado")
-  //     .addEventListener("click", mostrarFormulario);
-
-  // Botones --------------------
-
-  document;
-  frmAltaPedido.idboton.addEventListener("click", procesarCrearLibro);
+  document
+    .getElementById("mnuListadoPedidosCliente")
+    .addEventListener("click", mostrarFormulario);
+  frmAltaPedido.btnAltaPedido.addEventListener("click", procesarAltaPedido);
+  frmListadoPedidosCliente.btnListadoPedidosCliente.addEventListener(
+    "click",
+    procesarListado,
+  );
 }
 
 function mostrarFormulario(oEvento) {
-  let opcionMenu = oEvento.target.id; // Opción de menú pulsada (su id)
-
+  oEvento.preventDefault();
   ocultarFormularios();
-
-  switch (opcionMenu) {
+  switch (oEvento.target.id) {
     case "mnuAltaPedido":
-      frmAltaPedido.classList.remove("d-none");
-      //  actualizarDesplegableGenero();
+      frmAltaPedido.style.display = "block";
+      cargarDesplegables();
       break;
-    // case "mnuListado":
-    //     frmListado.classList.remove("d-none");
-    //     actualizarDesplegableGenero();
-    //     break;
+    case "mnuListadoPedidosCliente":
+      frmListadoPedidosCliente.style.display = "block";
+      cargarDesplegables();
+      break;
   }
 }
 
 function ocultarFormularios() {
-  frmAltaPedido.classList.add("d-none");
+  frmAltaPedido.style.display = "none";
+  frmListadoPedidosCliente.style.display = "none";
 }
 
-async function altapedido() {
-  var nombreCliente = document.getElementById(campoNombreCliente);
-  var plato = parseInt(frmAltaPedido.lstPlato.value);
-  var unidades = document.querySelector('input[name="selected"]:checked').value;
+async function cargarDesplegables() {
+  let platos = await oBar.getPlatos();
+  let options = "";
+  for (let plato of platos) {
+    options += `<option value="${plato.idplato}">${plato.nombre}</option>`;
+  }
+  frmAltaPedido.lstPlato.innerHTML = options;
+}
 
-  var respuesta = await oBar.crearPedido(
-    new Pedido(null, nombreCliente, plato, unidades),
-  );
+async function procesarAltaPedido() {
+  let cliente = frmAltaPedido.txtCliente.value.trim();
+  let idplato = frmAltaPedido.lstPlato.value;
+  let unidades = frmAltaPedido.radUnidades.value;
+  let oPedido = new Pedido(null, cliente, idplato, unidades);
+  let respuesta = await oBar.altaPedido(oPedido);
+  alert(respuesta.mensaje);
+  if (respuesta.ok) {
+    frmAltaPedido.reset();
+  }
+}
+
+async function procesarListado() {
+  let cliente = frmListadoPedidosCliente.txtNombreClienteListado.value.trim();
+  let tabla = await oBar.listadoPedidosCliente(cliente);
+  let capa = document.querySelector("#listado");
+  capa.innerHTML = tabla;
+  capa.style.display = "block";
 }

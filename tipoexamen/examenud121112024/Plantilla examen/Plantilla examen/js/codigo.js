@@ -2,38 +2,35 @@
 
 // Codificar aquí el programa principal
 
+var oLibreria = new Libreria();
+
 const frmCrear = document.getElementById("frmCrearLibro");
 const frmListado = document.getElementById("frmListado");
 
 registrarEventos();
 
 function registrarEventos() {
-  // Opciones del menu (B.1)
-  document.getElementById("mnuCrearLibro").addEventListener("click", mostrarFormulario);
-  document.getElementById("mnuListado").addEventListener("click", mostrarFormulario);
-
-  // Botones de los formularios (B.2 y B.3).
-  // Se pasa la REFERENCIA a la funcion (sin parentesis): si no, se ejecutaria ya.
+  document
+    .getElementById("mnuCrearLibro")
+    .addEventListener("click", mostrarFormulario);
+  document
+    .getElementById("mnuListado")
+    .addEventListener("click", mostrarFormulario);
   frmCrear.btnCrearLibro.addEventListener("click", procesarAltaLibro);
   frmListado.btnListado.addEventListener("click", procesarListado);
 }
 
-
 function mostrarFormulario(oEvento) {
-  oEvento.preventDefault(); // los <a href="#"> saltarian al inicio de la pagina
-
-  // Patron "ocultar todo y luego mostrar uno": no depende del estado anterior
-  // y garantiza que los dos formularios nunca se vean a la vez.
+  oEvento.preventDefault();
   ocultarFormularios();
-
   switch (oEvento.target.id) {
     case "mnuCrearLibro":
-      
-      frmCrearLibro.classList.remove("d-none"); // d-none = display:none de Bootstrap
+      frmCrearLibro.classList.remove("d-none");
+      cargarDesplegables()
       break;
     case "mnuListado":
-      
       frmListado.classList.remove("d-none");
+      cargarDesplegables()
       break;
   }
 }
@@ -41,4 +38,47 @@ function mostrarFormulario(oEvento) {
 function ocultarFormularios() {
   frmCrear.classList.add("d-none");
   frmListado.classList.add("d-none");
+}
+
+async function cargarDesplegables() {
+  let respuesta = await oLibreria.getGeneros();
+  if (respuesta.ok) {
+    let options = "";
+    for (let genero of respuesta.datos) {
+      options += `<option value="${genero.idgenero}">${genero.genero}</option>`;
+    }
+    frmCrear.lstGenero.innerHTML = options;
+    frmListado.lstGenero.innerHTML = options;
+  } else {
+    alert(
+      "No se han podido cargar los generos literarios: " + respuesta.mensaje,
+    );
+  }
+}
+
+async function procesarAltaLibro() {
+  let titulo = frmCrear.txtTitulo.value.trim();
+  let autor = frmCrear.txtAutor.value.trim();
+  let descripcion = frmCrear.txtDescripcion.value.trim();
+  let imagen = frmCrear.txtImagen.value.trim();
+  let idgenero = frmCrear.lstGenero.value;
+  let oLibro = new Libro(null, idgenero, titulo, autor, descripcion, imagen);
+  let respuesta = await oLibreria.crearLibro(oLibro);
+  alert(respuesta.mensaje);
+  if (respuesta.ok) {
+    frmCrear.reset();
+    frmCrear.classList.add("d-none");
+  }
+}
+
+function procesarListado() {
+  let lst = frmListado.lstGenero;
+  let idgenero = lst.value;
+  let genero = lst.options[lst.selectedIndex].textContent;
+  open(
+    "tarjetas.html?idgenero=" +
+      encodeURIComponent(idgenero) +
+      "&genero=" +
+      encodeURIComponent(genero),
+  );
 }
